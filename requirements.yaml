@@ -1,0 +1,9 @@
+- src: geerlingguy.java
+- src: gantsign.maven
+
+- src: geerlingguy.git
+
+- src: geerlingguy.jenkins
+- src: andrewrothstein.terraform
+
+- src: idealista.tomcat_role
