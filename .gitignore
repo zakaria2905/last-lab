@@ -1,12 +1,12 @@
 # Ne pas versionner la cle SSH prive
-terraform/ssh-keys/id_rsa_aws
+ssh-keys/id_rsa_aws
 
 # Ne pas versionner vos cles AWS
 terraform.tfvars
 
 .vagrant
 roles/
-terraform/.terraform*
-terraform/terraform*
+.terraform*
+terraform*
 ubuntu*
 Vagrantfile
