@@ -6,7 +6,7 @@ pipeline {
     stages {       // Clone from Git
         stage("Clone App from Git"){
             steps{
-               git branch:"master",  url: "https://gitlab.com/mromdhani/pipeline-terraform-ansible.git"
+               git branch:"master",  url: "https://github.com/zakaria2905/last-lab.git"
             }          
         }
         
@@ -22,10 +22,10 @@ pipeline {
             steps {
                
                     withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', 
-                           accessKeyVariable: 'AWS_ACCESS_KEY_ID', 
-                           credentialsId: 'my-personal-credential-aws', 
-                           secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-                
+                    accessKeyVariable: 'AWS_ACCESS_KEY_ID', 
+                    credentialsId: 'aws-cred', 
+                    secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+
                       sh "terraform  plan  -no-color  -out=tfplan"
                     }
                 
@@ -35,9 +35,9 @@ pipeline {
             
             steps {
                     withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', 
-                           accessKeyVariable: 'AWS_ACCESS_KEY_ID', 
-                           credentialsId: 'my-personal-credential-aws', 
-                           secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+                    accessKeyVariable: 'AWS_ACCESS_KEY_ID', 
+                    credentialsId: 'aws-cred', 
+                    secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
                 
                       sh "terraform apply -no-color  -auto-approve  tfplan "
                     }
