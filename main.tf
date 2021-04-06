@@ -10,8 +10,8 @@ terraform {
 provider "aws" {
   # profile = "default" # Authentication profile refers to ~/.aws/credentials
   
-  access_key = var.aws_access_key
-  secret_key = var.aws_secret_key
+  #access_key = var.aws_access_key
+  #secret_key = var.aws_secret_key
   
   region  = "us-east-2"
   
@@ -55,4 +55,13 @@ resource "aws_default_security_group" "default" {
     protocol    = "-1" # Tous protocoles inclus
     cidr_blocks = ["0.0.0.0/0"]
   }
+
+  resource "local_file" "inventory" {
+    filename = "./hosts-generated"
+    content     = <<EOF
+    [my-ec2-instance]
+    ${aws_instance.my-first-ec2-instance.public_ip}       
+
+    EOF
+
 }
