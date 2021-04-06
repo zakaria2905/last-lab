@@ -56,12 +56,3 @@ resource "aws_default_security_group" "default" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
-
-resource "local_file" "inventory" {
-    filename = "./hosts-generated"
-    content     = <<EOF
-    [my-ec2-instance]
-    ${aws_instance.my-first-ec2-instance.public_ip}       
-
-    EOF
-}
